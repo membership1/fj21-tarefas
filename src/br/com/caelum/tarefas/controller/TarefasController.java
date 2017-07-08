@@ -41,10 +41,9 @@ public class TarefasController {
 	}
 	@ResponseBody
 	@RequestMapping("removeTarefa")
-	public void remove(Tarefa tarefa, HttpServletResponse response) {
+	public void remove(Tarefa tarefa) {
 	  JdbcTarefaDao dao = new JdbcTarefaDao();
 	  dao.remove(tarefa);
-	  response.setStatus(200);
 	}
 	@RequestMapping("mostraTarefa")
 	public String mostra(Long id, Model model) {

@@ -13,7 +13,7 @@
 </script>
 	<script>
 	function removeAgora(id) {
-		 $.post("removeTarefa", {'id' : id}, function(removeAgora) {
+		 $.post("removeTarefa", {'id' : id}, function() {
 	     $("#tarefa_remove_"+id).closest("tr").hide();
 		 });
 		 }
