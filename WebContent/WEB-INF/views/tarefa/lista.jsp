@@ -53,5 +53,8 @@
 	<br>
 	<br>
 	<a href="novaTarefa">Criar nova tarefa</a>
+	<br>
+	<br>
+	<a href="logout">Logout</a>
 </body>
 </html>

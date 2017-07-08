@@ -7,5 +7,9 @@
     <p>Bem vindo, ${usuarioLogado.login}</p> 
     <a href="listaTarefas">Clique aqui</a> para acessar a 
     lista de tarefas
+    
+   <br>
+   <br>
+   <a href="logout">Logout</a>
   </body>
 </html>
