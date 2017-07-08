@@ -1,11 +1,16 @@
 package br.com.caelum.tarefas.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.caelum.tarefas.dao.JdbcTarefaDao;
 import br.com.caelum.tarefas.modelo.Tarefa;
@@ -34,11 +39,12 @@ public class TarefasController {
 		model.addAttribute("tarefas", dao.lista());
 		return "tarefa/lista";
 	}
+	@ResponseBody
 	@RequestMapping("removeTarefa")
-	public String remove(Tarefa tarefa) {
+	public void remove(Tarefa tarefa, HttpServletResponse response) {
 	  JdbcTarefaDao dao = new JdbcTarefaDao();
 	  dao.remove(tarefa);
-	  return "redirect:listaTarefas";
+	  response.setStatus(200);
 	}
 	@RequestMapping("mostraTarefa")
 	public String mostra(Long id, Model model) {
@@ -51,6 +57,15 @@ public class TarefasController {
 	  JdbcTarefaDao dao = new JdbcTarefaDao();
 	  dao.altera(tarefa);
 	  return "redirect:listaTarefas";
+	}
+	@ResponseBody
+	@RequestMapping("finalizaTarefa")
+	public String finaliza(Long id){
+	  JdbcTarefaDao dao = new JdbcTarefaDao();
+	  dao.finaliza(id);
+	  Date dataDeFinalizacao = dao.buscaPorId(id).getDataFinalizacao().getTime();
+	  String data = new SimpleDateFormat("dd/MM/yyyy").format(dataDeFinalizacao);    
+	  return data;
 	}
 
 }
